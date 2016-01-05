@@ -1,4 +1,7 @@
 this is product show page
 
 <p><%= @product.name %> </p>
+<p><%= @product.category.title %></p>
 <p><%= @product.description %> </p>
+
+<%= link_to "Back to index", products_path%>

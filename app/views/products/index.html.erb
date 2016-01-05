@@ -1,13 +1,12 @@
 This is product index page
-
-<ul>
-<% @products.each do |p| %>
-  <li>
- 	  <%= p.name %>
-  <%= link_to 'Show', product_path(p)%>
-  <%= link_to 'Edit', edit_product_path(p)%>
-  <%= link_to 'Delete',product_path(p), :method => :delete%>
-  </li>
-<% end %>
-</ul>
+<table>
+		
+			<tr><% @products.each do |p| %></tr>
+		 	  <td><%= p.name %></td>
+		  	<td><%= link_to 'Show', product_path(p)%></td>
+		  	<td><%= link_to 'Edit', edit_product_path(p)%></td>
+		  	<td><%= link_to 'Delete',product_path(p), :method => :delete%></td>
+			<% end %>
+			
+</table>
 <%= link_to 'Add New Product', new_product_path  %>
