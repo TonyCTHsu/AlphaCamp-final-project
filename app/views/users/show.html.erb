@@ -5,3 +5,14 @@
 <p>地址: <%= @user.address %></p>
 
 <p><%= link_to 'Back to index', root_path %></p>
+
+
+
+
+ <p><%= link_to '新增訂單', new_user_order_path(@user) %></p>
+
+<% @orders.each do |o| %>
+<p><%= link_to '查看訂單', user_order_path(@user,o) %></p>
+<p><%= link_to '修改訂單', edit_user_order_path(@user,o)%></p>
+<p><%= link_to '刪除訂單', user_order_path(@user, o),:method => :delete %></p>
+<% end %>

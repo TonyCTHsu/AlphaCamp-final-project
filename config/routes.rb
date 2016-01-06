@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users
+  resources :users do 
+    resources :orders, :controller => 'user_orders'
+  end
+
   resources :products
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -51,7 +54,7 @@ Rails.application.routes.draw do
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
-root to: "products#index" 
+root to: "users#show" 
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
