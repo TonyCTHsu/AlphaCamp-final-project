@@ -1,8 +1,11 @@
-<%= form_for @order, :url => user_orders_path(@user) do |o| %>
+<%= form_for @order, :url => user_orders_path(@user) do |f| %>
   
-   <%= o.text_field :family_type%>
-   <%= o.text_field :delivery_address%>
-   <%= o.datetime_local_field :delivery_date %>
+   <%= f.text_field :family_type%>
+   <%= f.text_field :delivery_address%>
+   <%= f.datetime_local_field :delivery_date %>
 
-   <%= o.submit %>
+
+
+		
+   <%= f.submit %>
 <% end %>
