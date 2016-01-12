@@ -1,4 +1,4 @@
-<%= form_for @order, :url => user_order_path(@user, @order), :method => :patch do |o| %>
+<%= form_for @order, :url => order_path(@order), :method => :patch do |o| %>
   
    <%= o.text_field :family_type%>
    <%= o.text_field :delivery_address%>

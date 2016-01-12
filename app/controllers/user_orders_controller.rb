@@ -1,4 +1,5 @@
 class UserOrdersController < ApplicationController
+	
 	before_action :find_user
 
 	def index
@@ -43,7 +44,7 @@ class UserOrdersController < ApplicationController
 	protected
 
 	def find_user
-		@user = User.find( params[:user_id] )
+		@user = current_user
 	end
 
 	def params_order
