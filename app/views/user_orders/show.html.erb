@@ -5,5 +5,9 @@
  	<li><%=  @order.family_type %></li>
  	<li><%=  @order.delivery_address %></li> 	
  	<li><%=  @order.delivery_date %></li> 
-
+	<% @order.order_items.each do |o| %>
+		<li><%=	o.product.name %></li>
+		<li><%=	o.status %></li>
+	<% end %>
+	
 </ul>
