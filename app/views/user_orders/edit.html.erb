@@ -1,4 +1,4 @@
-<%= form_for setup_order(@order), :url => order_path(@order), :method => :patch do |f| %>
+<%= form_for @order, :url => order_path(@order), :method => :patch do |f| %>
   
   <%= f.text_field :family_type%>
   <%= f.text_field :delivery_address%>
@@ -7,6 +7,7 @@
 		<div>
 			<%= ff.object.product.name %>
 			<%= ff.hidden_field	:product_id %>
+			<%= ff.hidden_field	:id %>
 			<%= ff.radio_button :status , "Whatever" %>
 			whatever
 			<%= ff.radio_button :status , "YES" %>
@@ -17,3 +18,4 @@
 	<% end %>
   <%= f.submit %>
 <% end %>	
+<%= link_to "回到上一頁",:back %>

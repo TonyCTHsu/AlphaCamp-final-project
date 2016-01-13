@@ -1,13 +1,26 @@
-<ul>
 
-  <li><%= @order.user.name %></li>
-  <li><%=  @order.id %></li>
- 	<li><%=  @order.family_type %></li>
- 	<li><%=  @order.delivery_address %></li> 	
- 	<li><%=  @order.delivery_date %></li> 
+  <div>
+  	<%= @order.user.name %>
+  </div>
+  <div>
+  	<%=  @order.id %>
+  </div>
+  <div>
+  	<%=  @order.family_type %>
+  </div>
+  <div>送貨地址
+  	<%=  @order.delivery_address %>
+  </div>
+  <div>
+  	<%=  @order.delivery_date %>
+  </div>
+<table>
 	<% @order.order_items.each do |o| %>
-		<li><%=	o.product.name %></li>
-		<li><%=	o.status %></li>
+	<tr>
+		<td><%=	o.product.name %></td>
+
+		<td><%=	o.status %></td>
+	</tr>
 	<% end %>
-	
-</ul>
+</table>
+<%= link_to "回到上一頁",:back %>

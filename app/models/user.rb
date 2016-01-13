@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
-	has_many :orders
+	has_many :orders, :dependent => :destroy
 
 	def self.from_omniauth(auth)
      # Case 1: Find existing user by facebook uid
