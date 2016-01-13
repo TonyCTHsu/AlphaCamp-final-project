@@ -17,6 +17,7 @@ class UserOrdersController < ApplicationController
 	def create
 		@order = @user.orders.new(params_order)
 		@order.user =current_user
+
 		@order.save
 
 		redirect_to user_path(@user)
@@ -48,6 +49,6 @@ class UserOrdersController < ApplicationController
 	end
 
 	def params_order
-		params.require(:order).permit(:family_type, :delivery_address, :delivery_date, :order_items_attributes =>[:status,:product_id, :id] )
+		params.require(:order).permit(:family_type_id, :delivery_address, :delivery_date, :order_items_attributes =>[:status,:product_id, :id] )
 	end
 end

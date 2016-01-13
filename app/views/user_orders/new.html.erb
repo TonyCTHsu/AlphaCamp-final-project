@@ -1,6 +1,6 @@
 <%= form_for setup_order(@order), :url => orders_path(@order) do |f| %>
 	<div>
-		<%= f.text_field :family_type%>
+		<%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
 	</div>
 	<div>
 		<%= f.text_field :delivery_address%>
