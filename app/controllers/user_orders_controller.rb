@@ -12,12 +12,13 @@ class UserOrdersController < ApplicationController
 
 	def new
 		@order = @user.orders.new
+		@order.delivery_address = current_user.address
 	end
 	
 	def create
 		@order = @user.orders.new(params_order)
-		@order.user =current_user
-
+		
+		
 		@order.save
 
 		redirect_to user_path(@user)

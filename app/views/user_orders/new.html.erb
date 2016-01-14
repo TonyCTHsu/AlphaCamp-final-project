@@ -1,14 +1,18 @@
 <%= form_for setup_order(@order), :url => orders_path(@order) do |f| %>
 	<div>
+		<%= f.label :family_type_id, "家庭方案: "%>
 		<%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
 	</div>
 	<div>
-		<%= f.text_field :delivery_address%>
+		<%= f.label :delivery_address, "配送地址: "%>
+		<%= f.text_field :delivery_address, value: @user.address %>
 	</div>
 	<div>
+		<%= f.label :family_type_id, "配送日期: "%>
 		<%= f.datetime_local_field :delivery_date %>
 	</div>
-	
+	<div>
+		<%= f.label :order_items, "親自挑選您的菜籃: "%>
 		<%= f.fields_for :order_items do |ff|%>
 			<table>
 				<tr>
@@ -21,5 +25,6 @@
 			</table>
 		<% end %>
 		<%= f.submit %>
+	</div>
 <% end %>
 <%= link_to "回到上一頁",:back %>
