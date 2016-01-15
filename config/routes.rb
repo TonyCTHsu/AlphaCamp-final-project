@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
+    resources :users # ApiV1::UsersController
+  end
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users  
