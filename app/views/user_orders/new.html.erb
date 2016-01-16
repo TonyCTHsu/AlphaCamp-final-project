@@ -8,8 +8,16 @@
 		<%= f.text_field :delivery_address, value: @user.address %>
 	</div>
 	<div>
-		<%= f.label :family_type_id, "配送日期: "%>
+		<%= f.label :delivery_date, "配送日期: "%>
 		<%= f.datetime_local_field :delivery_date %>
+	</div>
+	<div>
+		<%= f.label :spice, "選擇是否要辛香料: "%>
+		<%= f.check_box :spice %>
+	</div>
+		<div>
+		<%= f.label :rice, "選擇是否要米: "%>
+		<%= f.check_box :rice %>
 	</div>
 	<div>
 		<%= f.label :order_items, "親自挑選您的菜籃: "%>
