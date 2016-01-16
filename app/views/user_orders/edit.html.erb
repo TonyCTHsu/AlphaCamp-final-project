@@ -10,7 +10,7 @@
   </div>
 	<div>
 		<%= f.label :family_type_id, "配送日期: "%>
-		<%= f.datetime_local_field :delivery_date %>
+		<%= f.date_field :delivery_date ,:type => "text", :class =>'datepicker', :data =>{:date_format => 'yyyy-mm-dd'} %>
 	</div>
 	<div>
 		<%= f.label :spice, "選擇是否要辛香料: "%>
@@ -41,3 +41,15 @@
   <%= f.submit %>
 <% end %>	
 <%= link_to "回到上一頁",:back %>
+
+<script type="text/javascript">
+
+	$(function () {
+    $('.datepicker').datepicker({
+        daysOfWeekDisabled: [0, 1, 2, 4, 5]
+    	});
+	});
+	$(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>

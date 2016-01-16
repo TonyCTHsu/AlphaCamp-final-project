@@ -9,8 +9,11 @@
 	</div>
 	<div>
 		<%= f.label :delivery_date, "配送日期: "%>
-		<%= f.datetime_local_field :delivery_date %>
+		<%= f.date_field :delivery_date ,:type => "text", :class =>'datepicker', :data =>{:date_format => 'yyyy-mm-dd'} ,:placeholder => "目前開放週三與週六"		%>
 	</div>
+
+
+
 	<div>
 		<%= f.label :spice, "選擇是否要辛香料: "%>
 		<%= f.check_box :spice %>
@@ -36,3 +39,19 @@
 	</div>
 <% end %>
 <%= link_to "回到上一頁",:back %>
+
+
+<script type="text/javascript">
+
+	$(function () {
+    $('.datepicker').datepicker({
+        daysOfWeekDisabled: [0, 1, 2, 4, 5],
+     
+    	});
+	});
+	
+	$(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>
+
