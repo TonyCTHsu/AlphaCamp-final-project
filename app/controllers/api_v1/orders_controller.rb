@@ -15,11 +15,12 @@ class ApiV1::OrdersController < ApiController
 	end
 	
 	def create
-		@topic.user = current_user
+		
 
 		@order = @user.orders.new(params_order)
+		@order.user = current_user
 		if @order.save
-      render :json => { :id => @order.id, :message => "OK" }
+      render :json => { :id => @order.id, :message => "Your order has been set!" }
     else
       render :json => { :message => "Invalid", :errors => @order.errors }, :status => 400
     end
@@ -52,7 +53,7 @@ class ApiV1::OrdersController < ApiController
 	end
 
 	def params_order
-		params.require(:order).permit(:family_type_id,:spice, :rice, :delivery_address, :delivery_date, :order_items_attributes =>[:status,:product_id, :id] )
+		params.require(:order).permit(:family_type_id, :spice, :rice, :delivery_address, :delivery_date, :order_items_attributes =>[:status,:product_id, :id] )	
 	end
-end
 
+end
