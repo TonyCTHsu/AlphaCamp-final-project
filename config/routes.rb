@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
-    resources :users # ApiV1::UsersController
+    
   end
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
     post "login" => "auth#login"
     post "logout" => "auth#logout"
     resources :orders # ApiV1::OrdersController
+    resources :users # ApiV1::UsersController
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -63,7 +64,7 @@ Rails.application.routes.draw do
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
-root to: "users#index" 
+root to: "welcome#welcome" 
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController

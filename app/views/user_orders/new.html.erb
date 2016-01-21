@@ -1,3 +1,8 @@
+
+
+<%= @order.errors.full_messages %>
+
+
 <%= form_for setup_order(@order), :url => orders_path(@order) do |f| %>
 	<div>
 		<%= f.label :family_type_id, "家庭方案: "%>
@@ -5,7 +10,7 @@
 	</div>
 	<div>
 		<%= f.label :delivery_address, "配送地址: "%>
-		<%= f.text_field :delivery_address, value: @user.address %>
+		<%= f.text_field :delivery_address, value: @user.address ,:placeholder => "請輸入您的地址"%>
 	</div>
 	<div>
 		<%= f.label :delivery_date, "配送日期: "%>
@@ -41,17 +46,17 @@
 <%= link_to "回到上一頁",:back %>
 
 
+
+
 <script type="text/javascript">
 
 	$(function () {
+		
     $('.datepicker').datepicker({
         daysOfWeekDisabled: [0, 1, 2, 4, 5],
      
     	});
 	});
-	
-	$(document).ready(function(){
-    $('.datepicker').datepicker();
-  });
+
 </script>
 

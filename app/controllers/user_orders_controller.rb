@@ -18,10 +18,12 @@ class UserOrdersController < ApplicationController
 	def create
 		@order = @user.orders.new(params_order)
 		
+		if @order.save
+			redirect_to user_path(@user)
+		else
+			render :action => :new 
+		end
 		
-		@order.save
-
-		redirect_to user_path(@user)
 	end
 
 	def edit
@@ -48,8 +50,8 @@ class UserOrdersController < ApplicationController
 	def find_user
 		@user = current_user
 	end
+
 	def params_order
-		params.require(:order).permit(:family_type_id,:spice, :rice, :delivery_address, :delivery_date, :order_items_attributes =>[:status,:product_id, :id]) 
-	
+		params.require(:order).permit(:family_type_id,:spice, :rice, :delivery_address, :delivery_date, :order_items_attributes =>[:status,:product_id, :id])
 	end
 end

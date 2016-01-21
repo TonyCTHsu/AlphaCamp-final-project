@@ -1,8 +1,13 @@
 module OrdersHelper
 	def setup_order(order)
-	  Product.all.each do |p|
-	    order.order_items.build(:product =>p, :status => "Whatever")
-	  end
+	  
+	  if order.order_items.empty?
+	
+		  Product.all.each do |p|
+		    order.order_items.build(:product =>p, :status => "Whatever")
+		  end
+		end 
 	  order 
 	end
 end
+
