@@ -1,0 +1,12 @@
+<ul>
+<% @users.each do |u| %>
+  <li>
+ 	  <%= u.name %>
+  <%= link_to 'Show', admin_user_path(u) %>
+  <!-- <%= link_to 'Edit', edit_user_registration_path(u) %> -->
+  
+  </li>
+<% end %>
+</ul>
+
+<%= link_to '所有商品', admin_products_path %> 

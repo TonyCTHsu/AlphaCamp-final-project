@@ -1,0 +1,23 @@
+
+<p>姓名: <%= @user.name %></p>
+<p>E-mail: <%= @user.email %></p>
+<p>手機號碼: <%= @user.mobile_num %></p>
+<p>地址: <%= @user.address %></p>
+
+<p><%= link_to 'Back to Users index', admin_users_path %></p>
+
+ <p><%= link_to '新增訂單', new_admin_order_path(:user_id => @user.id) %></p>
+
+<table>	
+	<tr>
+		<th>訂單</th>
+	</tr>
+	<% @user.orders.each do |order| %>
+	<tr>
+		<td><%= link_to "#{order.number}" , admin_order_path(order,:user_id => @user.id) %></td>
+		<td><%= link_to '修改', edit_admin_order_path(order,:user_id => @user.id)%></td>
+		<td><%= link_to '刪除', admin_order_path(order, :user_id => @user.id), :method => :delete %></td>
+	</tr>
+	<% end %>
+	
+</table>

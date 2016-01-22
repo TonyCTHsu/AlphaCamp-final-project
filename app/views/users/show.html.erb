@@ -4,19 +4,27 @@
 <p>手機號碼: <%= @user.mobile_num %></p>
 <p>地址: <%= @user.address %></p>
 
-<p><%= link_to 'Back to index', root_path %></p>
-
-
-
+<p><%= link_to '回到首頁', root_path %></p>
 
  <p><%= link_to '新增訂單', new_order_path %></p>
 
-<% @orders.each do |o| %>
+<table>	
+	<tr>
+		<th>
+			<td>訂單編號</td>	
+			<td>action </td>
+			<td>成立日期</td>
+			<td>配送日期</td>			
+		</th>
+	</tr>
+	<% @orders.each do |o| %>
+	<tr>
+	
+		<td><%= link_to "#{o.number}" , order_path(o) %></td>
+		<td><%= link_to '修改', edit_order_path(o)%></td>
+		<td><%= o.created_at %></td>
+		<td><%= o.delivery_date %></td>		
 
-	<p><%= link_to "查看訂單#{o.number}" , order_path(o) %></p>
-	<p><%= link_to '修改', edit_order_path(o)%></p>
-	<!-- <p><%= link_to '刪除訂單', order_path(o),:method => :delete %></p> -->
-
-
-
-<% end %>
+	</tr>
+	<% end %>
+</table>

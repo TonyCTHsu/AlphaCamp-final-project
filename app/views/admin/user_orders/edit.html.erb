@@ -1,0 +1,56 @@
+<%= form_for @order, :url => admin_order_path(@order,:user_id => @user.id), :method => :patch do |f| %>
+  
+  <div>
+  	<%= f.label :family_type_id, "家庭方案: "%>
+		<%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
+	</div>
+  <div>
+  	<%= f.label :delivery_address, "配送地址: "%>
+  	<%= f.text_field :delivery_address%>
+  </div>
+	<div>
+		<%= f.label :family_type_id, "配送日期: "%>
+		<%= f.date_field :delivery_date ,:type => "text", :class =>'datepicker', :data =>{:date_format => 'yyyy-mm-dd'} %>
+	</div>
+	<div>
+		<%= f.label :spice, "選擇是否要辛香料: "%>
+		<%= f.check_box :spice %>
+	</div>
+	<div>
+		<%= f.label :rice, "選擇是否要米: "%>
+		<%= f.check_box :rice %>
+	</div>
+  <%= f.label :order_items, "親自挑選您的菜籃: "%>
+	<div>
+	<%= f.fields_for :order_items do |ff|%>
+		<table>
+			<tr>
+				<td><%= ff.object.product.name %>
+				<%= ff.hidden_field	:product_id %>
+				<%= ff.hidden_field	:id %></td>
+				<td><%= ff.radio_button :status , "Whatever" %>
+				whatever</td>
+				<td><%= ff.radio_button :status , "YES" %>
+				Yes</td>
+				<td><%= ff.radio_button :status , "No" %>
+				No</td>
+			</tr>
+		<% end %>	
+		</table>
+	</div>
+  <%= f.submit %>
+<% end %>	
+<%= link_to "回到上一頁",:back %>
+
+<script type="text/javascript">
+
+	$(function () {
+    $('.datepicker').datepicker({
+        daysOfWeekDisabled: [0, 1, 2, 4, 5]
+       
+    	});
+	});
+	$(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>

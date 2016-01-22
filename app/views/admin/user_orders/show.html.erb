@@ -1,0 +1,29 @@
+
+<div>
+  訂購人：
+	<%= @order.user.name %>
+</div>
+<div> 家庭方案：
+	<%=  @order.family_type.family_type %>
+</div>
+<div> 配送地址： 
+ 	<%=  @order.delivery_address %>
+</div>
+<div>配送日期：
+	<%=  @order.delivery_date %>
+</div>
+<div>辛香料：
+  <%=  @order.spice %>
+</div>
+<div>米：
+  <%=  @order.rice %>
+</div>
+<table>這是您的菜籃：
+	<% @order.order_items.each do |o| %>
+	<tr>
+		<td><%=	o.product.name %></td>
+		<td><%=	o.status %></td>
+	</tr>
+	<% end %>
+</table>
+<%= link_to "回到上一頁",:back %>

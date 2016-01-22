@@ -1,16 +1,11 @@
-
-
-<%= @order.errors.full_messages %>
-
-
-<%= form_for setup_order(@order), :url => orders_path(@order) do |f| %>
+<%= form_for setup_order(@order), :url => admin_orders_path(@order,:user_id => @user.id) do |f| %>
 	<div>
 		<%= f.label :family_type_id, "家庭方案: "%>
 		<%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
 	</div>
 	<div>
 		<%= f.label :delivery_address, "配送地址: "%>
-		<%= f.text_field :delivery_address, value: current_user.address ,:placeholder => "請輸入您的地址"%>
+		<%= f.text_field :delivery_address, value: @user.address ,:placeholder => "請輸入您的地址"%>
 	</div>
 	<div>
 		<%= f.label :delivery_date, "配送日期: "%>
