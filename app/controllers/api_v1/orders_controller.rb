@@ -1,23 +1,21 @@
 class ApiV1::OrdersController < ApiController
-	before_action :find_user
-	before_action :authenticate_user!, :only => [:create]
+
+	before_action :authenticate_user!
 	def index
-		@orders = @user.orders
+		@orders = current_user.orders
 	end
 
 	def show
-		@order = @user.orders.find(params[:id])
+		@order = current_user.orders.find(params[:id])
 	end
 
 	def new
-		@order = @user.orders.new
+		@order = current_user.orders.new
 		@order.delivery_address = current_user.address
 	end
 	
 	def create
-		
-
-		@order = @user.orders.new(params_order)
+		@order = current_user.orders.new(params_order)
 		@order.user = current_user
 		if @order.save
       render :json => { :id => @order.id, :message => "Your order has been set!" }
@@ -47,10 +45,6 @@ class ApiV1::OrdersController < ApiController
 
 
 	protected
-
-	def find_user
-		@user = current_user
-	end
 
 	def params_order
 		params.require(:order).permit(

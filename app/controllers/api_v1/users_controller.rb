@@ -1,13 +1,13 @@
 class ApiV1::UsersController < ApiController
 	
-  def index
-		@users = User.all
-	end
+ #  def index
+	# 	@users = User.all
+	# end
 
-	def show
-  	@user = User.find(params[:id])
-  	@orders = @user.orders
- 	end
+	# def show
+ #  	@user = User.find(params[:id])
+ #  	@orders = @user.orders
+ # 	end
 
  	def create
  		x = User.new(reg_params)
