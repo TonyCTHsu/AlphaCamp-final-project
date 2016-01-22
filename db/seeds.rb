@@ -20,13 +20,16 @@ OrderItem.delete_all
 FamilyType.create!(:family_type => "幸福小倆口", :price => 700)
 FamilyType.create!(:family_type => "全家草幸福", :price => 1180)
 
+User.create!(:name =>"Tony Hsu", :email => "tonyc.t.hsu@gmail.com", :password =>"25006911", 
+						 :password_confirmation => "25006911", :role =>"admin")
 
 array_cata.each do |c|
 	Category.create!(:title => c)
 end
 
 array1.each do |o|
-	Product.create!(:name => o, :category_id => Category.find_by_title("根莖類"))
+	Product.create!(:name => o, :category => Category.last)
+
 end
 
 # array2.each do |o|

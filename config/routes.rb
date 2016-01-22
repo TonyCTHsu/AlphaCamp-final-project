@@ -1,22 +1,26 @@
 Rails.application.routes.draw do
 
-  scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
-    
+  namespace :admin do
+    resources :users, :only => [:index,:show]
+    resources :orders,:controller => 'user_orders'
+    resources :products
   end
+  
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
     post "login" => "auth#login"
     post "logout" => "auth#logout"
-    resources :orders # ApiV1::OrdersController
-    resources :users # ApiV1::UsersController
+    get "products" => "products#index"
+    resources :orders, :only => [:create, :show, :index] # ApiV1::OrdersController
+    resources :users, :only => :create # ApiV1::UsersController
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", 
+    :registrations => "registrations" }
 
-  resources :users  
-  resources :orders, :controller => 'user_orders'
   
+  resources :users, :only => :show
+  resources :orders, :controller => 'user_orders', :except => :destroy
 
-  resources :products
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -10,6 +10,6 @@ class Order < ActiveRecord::Base
 	validates_inclusion_of :spice, :rice,  :in => [true, false]
 
 	def number
-		id.to_s.rjust(10,"0")
+		id.to_s.rjust(5,"0")
 	end
 end

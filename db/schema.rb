@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116053027) do
+ActiveRecord::Schema.define(version: 20160122055826) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160116053027) do
     t.string   "fb_uid"
     t.string   "fb_token"
     t.string   "authentication_token"
+    t.string   "role"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
