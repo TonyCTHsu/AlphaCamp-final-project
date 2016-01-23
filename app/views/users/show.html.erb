@@ -19,12 +19,10 @@
 	</tr>
 	<% @orders.each do |o| %>
 	<tr>
-	
 		<td><%= link_to "#{o.number}" , order_path(o) %></td>
 		<td><%= link_to '修改', edit_order_path(o)%></td>
 		<td><%= o.created_at %></td>
 		<td><%= o.delivery_date %></td>		
-
 	</tr>
 	<% end %>
 </table>

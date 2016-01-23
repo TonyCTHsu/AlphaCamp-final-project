@@ -20,8 +20,8 @@ OrderItem.delete_all
 FamilyType.create!(:family_type => "幸福小倆口", :price => 700)
 FamilyType.create!(:family_type => "全家草幸福", :price => 1180)
 
-User.create!(:name =>"Tony Hsu", :email => "tonyc.t.hsu@gmail.com", :password =>"25006911", 
-						 :password_confirmation => "25006911", :role =>"admin")
+User.create!(:name =>"Tony Hsu", :email => "tonyc.t.hsu@gmail.com", :password =>"12345678", 
+						 :password_confirmation => "12345678", :role =>"admin")
 
 array_cata.each do |c|
 	Category.create!(:title => c)
