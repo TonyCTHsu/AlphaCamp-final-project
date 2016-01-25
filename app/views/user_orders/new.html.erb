@@ -1,8 +1,4 @@
 
-
-<%= @order.errors.full_messages %>
-
-
 <%= form_for setup_order(@order), :url => orders_path(@order) do |f| %>
 	<div>
 		<%= f.label :family_type_id, "家庭方案: "%>
@@ -16,8 +12,6 @@
 		<%= f.label :delivery_date, "配送日期: "%>
 		<%= f.date_field :delivery_date ,:type => "text", :class =>'datepicker', :data =>{:date_format => 'yyyy-mm-dd'} ,:placeholder => "目前開放週三與週六"		%>
 	</div>
-
-
 
 	<div>
 		<%= f.label :spice, "選擇是否要辛香料: "%>
@@ -34,8 +28,8 @@
 				<tr>
 					<td><%= ff.object.product.name %></td>
 					<%= ff.hidden_field	:product_id %>
-		 			<td><%= ff.radio_button :status , "Whatever" %> whatever</td>
 					<td><%= ff.radio_button :status , "YES" %> Yes</td>
+					<td><%= ff.radio_button :status , "Whatever" %> whatever</td>
 					<td><%= ff.radio_button :status , "No" %> No</td>
 				</tr>
 			</table>
@@ -44,8 +38,6 @@
 	</div>
 <% end %>
 <%= link_to "回到上一頁",:back %>
-
-
 
 
 <script type="text/javascript">
