@@ -1,44 +1,79 @@
 
-<%= form_for setup_order(@order), :url => orders_path(@order) do |f| %>
-	<div>
-		<%= f.label :family_type_id, "家庭方案: "%>
-		<%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
-	</div>
-	<div>
-		<%= f.label :delivery_address, "配送地址: "%>
-		<%= f.text_field :delivery_address, value: current_user.address ,:placeholder => "請輸入您的地址"%>
-	</div>
-	<div>
-		<%= f.label :delivery_date, "配送日期: "%>
-		<%= f.date_field :delivery_date ,:type => "text", :class =>'datepicker', :data =>{:date_format => 'yyyy-mm-dd'} ,:placeholder => "目前開放週三與週六"		%>
-	</div>
+<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="smallModal" aria-hidden="true">
+  <div class="modal-dialog modal-sm2">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="close-modal" href="#" data-dismiss="modal">
+          <span class="menu-icon"></span>
+        </a>
+      </div>
+      <div class="modal-body">
+      <%= form_for setup_order(@order), :url => orders_path(@order) do |f| %>
+        <div class="row hide" data-step="1" data-title="This is the first step!">
+          <img src="img/cup1.jpg" alt="" class="img-responsive">
+          <div class="jumbotron">This is step 1
+            
+            <div>
+              <%= f.label :family_type_id, "家庭方案: "%>
+              <%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
+            </div>
+          </div>
+        </div>
+        <div class="row hide" data-step="2" data-title="This is the second step!">
+          <img src="img/cup2.jpg" alt="" class="img-responsive">
+          <div class="jumbotron">This is step 2
+            <div>
+              <%= f.label :delivery_date, "配送日期: "%>
+              <%= f.date_field :delivery_date ,:type => "text", :class =>'datepicker', :data =>{:date_format => 'yyyy-mm-dd'} ,:placeholder => "目前開放週三與週六"    %>
+            </div>
+          </div>
+        </div>
+        <div class="row hide" data-step="3" data-title="This is the third step!">
+          <img src="img/cup3.jpg" alt="" class="img-responsive">
+          <div class="jumbotron">This is step 3
+            <div>
+              <div>
+                <%= f.label :spice, "選擇是否要辛香料: "%>
+                <%= f.check_box :spice %>
+              </div>
+              <div>
+                <%= f.label :rice, "選擇是否要米: "%>
+                <%= f.check_box :rice %>
+              </div> 
+              <%= f.label :order_items, "親自挑選您的菜籃: "%>
+              <%= f.fields_for :order_items do |ff|%>
+                <table>
+                  <tr>
+                    <td><%= ff.object.product.name %></td>
+                    <%= ff.hidden_field :product_id %>
+                    <td><%= ff.radio_button :status , "YES" %> Yes</td>
+                    <td><%= ff.radio_button :status , "Whatever" %> whatever</td>
+                    <td><%= ff.radio_button :status , "No" %> No</td>
+                  </tr>
+                </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row hide" data-step="4" data-title="This is the forth step!">
+          <img src="img/cup2.jpg" alt="" class="img-responsive">
+          <div class="jumbotron">This is step 2
+            <div>
+              <%= f.label :delivery_address, "配送地址: "%>
+              <%= f.text_field :delivery_address, value: current_user.address ,:placeholder => "請輸入您的地址"%>
+            </div>
 
-	<div>
-		<%= f.label :spice, "選擇是否要辛香料: "%>
-		<%= f.check_box :spice %>
-	</div>
-		<div>
-		<%= f.label :rice, "選擇是否要米: "%>
-		<%= f.check_box :rice %>
-	</div>
-	<div>
-		<%= f.label :order_items, "親自挑選您的菜籃: "%>
-		<%= f.fields_for :order_items do |ff|%>
-			<table>
-				<tr>
-					<td><%= ff.object.product.name %></td>
-					<%= ff.hidden_field	:product_id %>
-					<td><%= ff.radio_button :status , "YES" %> Yes</td>
-					<td><%= ff.radio_button :status , "Whatever" %> whatever</td>
-					<td><%= ff.radio_button :status , "No" %> No</td>
-				</tr>
-			</table>
-		<% end %>
-		<%= f.submit %>
-	</div>
-<% end %>
-<%= link_to "回到上一頁",:back %>
-
+          </div>
+        <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning js-btn-step" data-orientation="previous"></button>
+        <button type="button" class="btn btn-success js-btn-step" data-orientation="next"></button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
 
@@ -49,6 +84,16 @@
      
     	});
 	});
-
+ $('#product-modal').modalSteps({
+  btnCancelHtml: 'Cancel',
+  btnPreviousHtml: 'Previous',
+  btnNextHtml: 'Next',
+  btnLastStepHtml: 'Complete',
+  disableNextButton: false,
+  completeCallback: function(){
+    $('#new_order').submit();
+  },
+  callbacks: {}
+  });
 </script>
 

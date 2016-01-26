@@ -1,11 +1,11 @@
 
-<p>姓名: <%= @user.name %></p>
-<p>E-mail: <%= @user.email %></p>
-<p>手機號碼: <%= @user.mobile_num %></p>
-<p>地址: <%= @user.address %></p>
+<p><b>姓名:</b> <%= @user.name %></p>
+<p><i class="fa fa-envelope"></i><b> E-Mail: </b><%= @user.email %> </p>
+<p><i class="fa fa-phone "></i> <b>手機號碼:  </b><%= @user.mobile_num %></p>
+<p><i class="fa fa-map-marker"></i> <b>地址:  </b><%= @user.address %></p>
 
 <p><%= link_to '回到首頁', root_path %></p>
-
+ 
  <p><%= link_to '新增訂單', new_order_path %></p>
 
 <table>	
