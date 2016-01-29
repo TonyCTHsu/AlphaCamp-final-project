@@ -1,9 +1,9 @@
-<div class="table-container">
+<div class="table-container" id="event_area">
 	<a class="close-modal" href="#" data-dismiss="modal">
     <span class="menu-icon"></span>
   </a>
 	<table class="table table-hover table-condense">
-		<%= form_for @order, :url => order_path(@order), :method => :patch do |f| %>
+		<%= form_for @order, :url => order_path(@order), :remote => true, :method => :patch do |f| %>
 	  <div>
 	  	<%= f.label :family_type_id, "家庭方案: "%>
 			<%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>

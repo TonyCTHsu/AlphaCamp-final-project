@@ -30,18 +30,21 @@ class UserOrdersController < ApplicationController
 	end
 
 	def edit
-		@order =current_user.orders.find(params[:id])
+		@order =current_user.orders.includes(:products).find(params[:id])
 
 	  render :layout => !request.xhr?
 	end
 
 	def update
 		
-		@order =current_user.orders.find(params[:id])
-			
+		@order =current_user.orders.includes(:products).find(params[:id])
+
 		if @order.update(params_order)
-		
-			redirect_to user_path(current_user)
+			respond_to do |format|
+				format.html
+				format.js
+			end
+			# redirect_to user_path(current_user)
 		else
 
 			render :action => :edit
