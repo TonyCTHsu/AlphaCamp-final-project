@@ -21,9 +21,10 @@ class ApiV1::UsersController < ApiController
     end
  	end
 
-protected
+  protected
 	
 	def reg_params
 		params.permit(:email, :password, :password_confirmation)
 	end
+	
 end

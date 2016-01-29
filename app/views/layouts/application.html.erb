@@ -13,32 +13,15 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <!-- core styles -->
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
-  
   <link rel="shortcut icon" href="img/ico/32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon-precomposed" href="img/ico/60.png" type="image/png" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/72.png" type="image/png" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/ico/120.png" type="image/png" />
   <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/ico/152.png" type="image/png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-
-
-
 </head>
 
-
 <body>
-
-<a href="#" data-toggle="modal" data-target="#product-modal">Load me</a>
-  <% if current_user %>
-    <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
-    <%= link_to('修改個人資料', edit_registration_path(:user)) %>|
-    <%= link_to('查看個人資料', user_path(current_user))%>
-  <% else %>
-    <%= link_to('註冊', new_registration_path(:user)) %>|
-    <%= link_to('登入', new_session_path(:user)) %>|
-    <%= link_to "登入 Facebook", user_omniauth_authorize_path(:facebook) %>    
-  <% end %>
 
   <%= yield %>
 
@@ -46,19 +29,7 @@
   |<%= link_to "後台", admin_products_path%>
   <% end%>
 
-</body>
-
-
-
 <script>
-
-  $(function () {
-    
-    $('.datepicker').datepicker({
-        daysOfWeekDisabled: [0, 1, 2, 4, 5],
-     
-      });
-  });
  $('#product-modal').modalSteps({
   btnCancelHtml: 'Cancel',
   btnPreviousHtml: 'Previous',
@@ -71,9 +42,12 @@
   callbacks: {}
   });
 
+ <% if params[:modal] %>
+  $("#<%= params[:modal] %>").modal("show");
+  history.replaceState({}, '', '/');
+ <% end %>
+
 </script>
 
-
-
-
+</body>
 </html>

@@ -14,6 +14,21 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap-sprockets
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.js
 
+
+//= require bootstrap-datepicker
+
+
+$(".remote-load").click(function(e){
+	var this_link = this
+  e.preventDefault();
+
+  var url = $(this).attr("href");
+
+  $.ajax(url, {
+    success: function(res) {
+    	$(this_link).closest(".modal-content").html( res );
+    }
+  })
+
+})

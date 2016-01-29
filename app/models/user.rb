@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
   before_create :generate_authentication_token
 
   def admin?
-    self.role == "admin"
-  
+    self.role == "admin" 
   end
 
   def generate_authentication_token

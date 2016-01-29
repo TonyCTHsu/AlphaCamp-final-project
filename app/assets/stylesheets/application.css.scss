@@ -17,5 +17,42 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "bootstrap-datepicker.css";
+@import 'bootstrap-datepicker';
 
+.guide {
+	margin-bottom: 10px;
+	font-size: 1.5em;
+}
+
+.ha img{
+	width:200px;
+
+}
+
+.jumbotron{
+	text-align: center;
+}
+.table-container {
+	margin: 3%;
+}
+
+#slide1 {
+	background-image: image-url("cup2.jpg");
+	background-repeat: no-repeat;
+	width: 1000px;
+  height: 1000px;
+}
+
+#slide2 {
+	background-image: image-url("cup3.jpg");
+	background-repeat: no-repeat;
+	width: 1000px;
+  height: 1000px;
+}
+
+#slide3 {
+	background-image: image-url("cup1.jpg");
+	background-repeat: no-repeat;
+	width: 1000px;
+  height: 1000px;
+}

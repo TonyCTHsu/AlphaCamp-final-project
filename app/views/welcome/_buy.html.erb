@@ -1,0 +1,98 @@
+
+        <div class="modal-header">
+          <a class="close-modal" href="#" data-dismiss="modal">
+            <span class="menu-icon"></span>
+          </a>
+        </div>
+        <div class="modal-body">
+          <%= form_for setup_order(@order), :url => orders_path(@order) do |f| %>
+          <div class="row hide" data-step="1" data-title="This is the first step!">
+            <img src="img/cup1.jpg" alt="" class="img-responsive">
+            <div class="jumbotron">
+              <div class="guide">
+                <b>
+                  選擇適合您家庭的幸福組合: <br>
+                  幸福小倆口(約1-2人份，每週四到六餐, 早鳥優惠價599)<br>  
+                  全家草幸福(約3-4人份，每週四到六餐, 早鳥優惠價1199)<br>
+                </b>
+              </div>
+              <div>
+                <%= f.label :family_type_id, "家庭方案: "%>
+                <%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
+              </div>
+              <div class= "check_box row">
+                <div class= " col-xs-6">
+                  <%= f.label :spice, "選擇是否要辛香料: "%>
+                  <%= f.check_box :spice %>
+                </div>
+                <div class= "col-xs-6">
+                  <%= f.label :rice, "選擇是否要米: "%>
+                  <%= f.check_box :rice %>
+                </div> 
+              </div>
+            </div>
+          </div>
+
+          <div class="row hide" data-step="2" data-title="This is the second step!">
+            <img src="img/cup2.jpg" alt="" class="img-responsive">
+            <div class="jumbotron">
+              <div class= "guide">
+                <b>告訴稻草人您的位置以及方便的時間</b>
+              </div>
+              <div>
+                <%= f.label :delivery_date, "配送日期: "%>
+                <%= f.date_field :delivery_date , :data =>{:date_format => 'yyyy-mm-dd'} ,:placeholder => "範例: 2016-1-31"%>
+              </div>
+              <div class>
+                  <%= f.label :delivery_address, "配送地址:" ,:class=>"col-sm-2"%>
+                  <%= f.text_field :delivery_address, value: current_user.address , :class=>"col-sm-9",:placeholder => "範例: 台北市中山區南京東路二段97號5樓"%>
+              </div>
+            </div>
+          </div>  
+
+          <div class="row hide" data-step="3" data-title="This is the third step!">
+            <img src="img/cup3.jpg" alt="" class="img-responsive">
+            <div class="jumbotron"> 
+              <div class="guide"><b>
+                客製化您的菜籃：</b><br>
+                <div class="options">
+                  菜籃必備! -> 稻草人一定會幫您準備<br>
+                  尚可 -> 稻草人會隨機幫您組合<br>
+                  別給我 -> 稻草人絕對會幫您排除<br>
+                </div>
+              </div>
+              <div class= "table-container">  
+                <table class="table table-striped table-hover table-condensed">
+                  <% f.label :order_items%>
+                  <tbody>
+                    <%= f.fields_for :order_items do |ff|%>
+                    <tr> 
+                      <td > 
+                        <b><%= ff.object.product.name %></b><%= ff.hidden_field :product_id %>
+                      </td>
+                      <td>
+                        <%= ff.radio_button :status , "YES" %> 
+                        <%= ff.label :status, "菜籃必備!", :value => "yes" %>
+                      </td>
+                      <td>
+                        <%= ff.radio_button :status , "Whatever" %> 
+                        <%= ff.label :status, "尚可", :value => "whatever"  %>
+                      </td>
+                      <td>
+                        <%= ff.radio_button :status , "No" %> 
+                        <%= ff.label :status, "別給我", :value => "no" %>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                  <% end %>  
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning js-btn-step" data-orientation="previous"></button>
+          <button type="button" class="btn btn-success js-btn-step" data-orientation="next"></button>
+        </div>
+  

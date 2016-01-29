@@ -10,6 +10,8 @@ class UserOrdersController < ApplicationController
 
 	def show
 		@order = current_user.orders.find(params[:id])
+
+		render :layout => !request.xhr?
 	end
 
 	def new
@@ -30,6 +32,8 @@ class UserOrdersController < ApplicationController
 
 	def edit
 		@order =current_user.orders.find(params[:id])
+
+		render :layout => !request.xhr?
 	end
 
 	def update
