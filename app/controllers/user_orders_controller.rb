@@ -23,27 +23,30 @@ class UserOrdersController < ApplicationController
 		@order = current_user.orders.new(params_order)
 		
 		if @order.save
-			redirect_to user_path(current_user)
 		else
-			render :action => :new 
+			flash[:alert] = @order.errors.full_messages
 		end
-		
+		redirect_to root_path
 	end
 
 	def edit
 		@order =current_user.orders.find(params[:id])
 
-		render :layout => !request.xhr?
+	  render :layout => !request.xhr?
 	end
 
 	def update
+		
 		@order =current_user.orders.find(params[:id])
-
+			
 		if @order.update(params_order)
+		
 			redirect_to user_path(current_user)
 		else
+
 			render :action => :edit
 		end
+		
 	end
 
 	def destroy

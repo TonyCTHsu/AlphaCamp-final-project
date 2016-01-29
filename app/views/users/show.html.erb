@@ -1,4 +1,8 @@
+
 <div class="modal-header">
+	<a class="close-modal" href="#" data-dismiss="modal">
+    <span class="menu-icon"></span>
+  </a>
 	<table class="table">
 		<tr>
 			<td><span class="glyphicon glyphicon-user"></span></td>
@@ -52,3 +56,19 @@
 	</table>
 </div>
 
+
+<script>
+	$(".remote-load").click(function(e){
+	var this_link = this
+  e.preventDefault();
+
+  var url = $(this).attr("href");
+
+  $.ajax(url, {
+    success: function(res) {
+    	$(this_link).closest(".modal-content").html( res );
+    }
+  })
+
+})
+</script>

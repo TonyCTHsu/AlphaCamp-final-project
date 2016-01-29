@@ -36,23 +36,28 @@
 	margin: 3%;
 }
 
-#slide1 {
-	background-image: image-url("cup2.jpg");
-	background-repeat: no-repeat;
-	width: 1000px;
-  height: 1000px;
+.numbers-item h4{
+	color: white;
+}
+.alert{
+	margin:0;
+	text-align:center;
 }
 
-#slide2 {
-	background-image: image-url("cup3.jpg");
-	background-repeat: no-repeat;
-	width: 1000px;
-  height: 1000px;
+
+
+.green-text{
+	color:green;
 }
 
-#slide3 {
-	background-image: image-url("cup1.jpg");
-	background-repeat: no-repeat;
-	width: 1000px;
-  height: 1000px;
+.red-text{
+	color: red
+}
+#table-align{
+	text-align:center;
+}
+
+.table-striped tr.found td {
+  background-color: #e67e22;
+
 }

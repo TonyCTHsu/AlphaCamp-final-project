@@ -1,44 +1,73 @@
-<%= form_for @order, :url => order_path(@order), :method => :patch do |f| %>
-  
-  <div>
-  	<%= f.label :family_type_id, "家庭方案: "%>
-		<%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
+<div class="table-container">
+	<a class="close-modal" href="#" data-dismiss="modal">
+    <span class="menu-icon"></span>
+  </a>
+	<table class="table table-hover table-condense">
+		<%= form_for @order, :url => order_path(@order), :method => :patch do |f| %>
+	  <div>
+	  	<%= f.label :family_type_id, "家庭方案: "%>
+			<%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
+		</div>
+	  <div>
+	  	<%= f.label :delivery_address, "配送地址: "%>
+	  	<%= f.text_field :delivery_address%>
+	  </div>
+		<div>
+			<%= f.label :delivery_date, "配送日期: "%>
+			<%= f.date_field :delivery_date ,:type => "text", :data =>{:date_format => 'yyyy-mm-dd'} %>
+		</div>
+		<div>
+			<%= f.label :spice, "選擇是否要辛香料: "%>
+			<%= f.check_box :spice %>
+		</div>
+		<div>
+			<%= f.label :rice, "選擇是否要米: "%>
+			<%= f.check_box :rice %>
+		</div>
+	</table>
+</div>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= link_to "回到上一頁",user_path(:id=>@order.user.id), :class=>"remote-load"  %>
+		</div>
 	</div>
-  <div>
-  	<%= f.label :delivery_address, "配送地址: "%>
-  	<%= f.text_field :delivery_address%>
-  </div>
-	<div>
-		<%= f.label :family_type_id, "配送日期: "%>
-		<%= f.date_field :delivery_date ,:type => "text", :class =>'datepicker', :data =>{:date_format => 'yyyy-mm-dd'} %>
-	</div>
-	<div>
-		<%= f.label :spice, "選擇是否要辛香料: "%>
-		<%= f.check_box :spice %>
-	</div>
-	<div>
-		<%= f.label :rice, "選擇是否要米: "%>
-		<%= f.check_box :rice %>
-	</div>
+	 
+	<div class="table-container" id="table-align">
   <%= f.label :order_items, "親自挑選您的菜籃: "%>
-	<div>
-	<%= f.fields_for :order_items do |ff|%>
-		<table>
-			<tr>
+
+		<table class="table table-hover table-condense">
+		<%= f.fields_for :order_items do |ff|%>
+		
+			<tr >
 				<td><%= ff.object.product.name %>
 				<%= ff.hidden_field	:product_id %>
-				<%= ff.hidden_field	:id %></td>
-				<td><%= ff.radio_button :status , "Whatever" %>
-				whatever</td>
-				<td><%= ff.radio_button :status , "YES" %>
-				Yes</td>
-				<td><%= ff.radio_button :status , "No" %>
-				No</td>
+				<%= ff.hidden_field	:id %></td>	
+				<td><%= ff.radio_button :status , "YES" %> Yes </td>
+				<td><%= ff.radio_button :status , "Whatever" %> whatever </td>
+				<td><%= ff.radio_button :status , "No" %>	No </td>
 			</tr>
 		<% end %>	
 		</table>
 	</div>
-  <%= f.submit %>
+	<div class="col-xs-3">
+		<%= f.submit %>
+	</div>
 <% end %>	
 
-<%= link_to "回到上一頁",:back %>
+
+<script>
+	$(".remote-load").click(function(e){
+	var this_link = this
+  e.preventDefault();
+
+  var url = $(this).attr("href");
+
+  $.ajax(url, {
+    success: function(res) {
+    	$(this_link).closest(".modal-content").html( res );
+    }
+  })
+
+})
+</script>
