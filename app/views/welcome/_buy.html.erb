@@ -16,16 +16,16 @@
                   全家草幸福(約3-4人份，每週四到六餐, 早鳥優惠價1199)<br>
                 </b>
               </div>
-              <div>
+              <div class="guide">
                 <%= f.label :family_type_id, "家庭方案: "%>
                 <%= f.select :family_type_id, FamilyType.all.map {|t| [t.family_type, t.id]}%>
               </div>
               <div class= "check_box row">
-                <div class= " col-xs-6">
+                <div class= "guide col-xs-6">
                   <%= f.label :spice, "選擇是否要辛香料: "%>
                   <%= f.check_box :spice %>
                 </div>
-                <div class= "col-xs-6">
+                <div class= "guide col-xs-6">
                   <%= f.label :rice, "選擇是否要米: "%>
                   <%= f.check_box :rice %>
                 </div> 
@@ -39,12 +39,12 @@
               <div class= "guide">
                 <b>告訴稻草人您的位置以及方便的時間</b>
               </div>
-              <div>
+              <div  class="guide">
                 <%= f.label :delivery_date, "配送日期: "%>
                 <%= f.date_field :delivery_date , :data =>{:date_format => 'yyyy-mm-dd'} ,:placeholder => "範例: 2016-1-31"%>
               </div>
-              <div class>
-                  <%= f.label :delivery_address, "配送地址:" ,:class=>"col-sm-2"%>
+              <div class="guide ">
+                  <%= f.label :delivery_address, "配送地址:" ,:class=>"col-sm-3"%>
                   <%= f.text_field :delivery_address, value: current_user.address , :class=>"col-sm-9",:placeholder => "範例: 台北市中山區南京東路二段97號5樓" %>
               </div>
             </div>
@@ -53,12 +53,14 @@
           <div class="row hide" data-step="3" data-title="This is the third step!">
             <img src="img/cup3.jpg" alt="" class="img-responsive">
             <div class="jumbotron"> 
-              <div class="guide"><b>
-                客製化您的菜籃：</b><br>
+              <div class="guide">
+                <b>客製化您的菜籃：</b><br>
                 <div class="options">
-                  菜籃必備! -> 稻草人一定會幫您準備<br>
-                  尚可 -> 稻草人會隨機幫您組合<br>
-                  別給我 -> 稻草人絕對會幫您排除<br>
+                  
+                    菜籃必備! -> 一定會幫您準備<br>
+                    尚可 -> 隨機幫您組合<br>
+                    別給我 -> 稻草人絕對會幫您排除<br>
+                 
                 </div>
               </div>
               <div class= "table-container">  
